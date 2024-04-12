@@ -26,7 +26,7 @@ const LoginPage = () => {
         console.log("Successfull", result);
     };
 
-   console.log(firebase)
+   //console.log(firebase)
 
     return(
                 <div className="container mt-5" style={{maxWidth: "400px",
@@ -59,7 +59,7 @@ const LoginPage = () => {
                 </Button>
               </Form>
               <h5 className='mt-3 mb-3' style={{textAlign:"center"}}>OR</h5>
-              <Button onClick={firebase.signinWithGoogle} variant='danger' style={{margin:"0 6rem"}}>SignIn with Google</Button>
+              <Button onClick={firebase.signinWithGoogle} variant='danger' style={{margin:"0 6rem"}}>Sign In with Google</Button>
               </div>
             );
           }

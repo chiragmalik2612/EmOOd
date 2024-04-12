@@ -8,8 +8,8 @@ import {
     signInWithPopup,
     GoogleAuthProvider
 } from 'firebase/auth'
-import {getFirestore, collection, addDoc, getDocs} from 'firebase/firestore'
-import {getStorage, ref, uploadBytes} from 'firebase/storage'
+import {getFirestore} from 'firebase/firestore'
+import {getStorage} from 'firebase/storage'
 
 
 const FirebaseContext = createContext(null);
