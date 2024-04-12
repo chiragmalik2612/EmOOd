@@ -7,6 +7,7 @@ import MyNavbar from "./components/Navbar"
 import AddMood from "./components/AddMood"
 import AllMoods from "./components/AllMoods"
 import HomePage from "./components/HomePage"
+import Logout from "./components/Logout"
 
 
 
@@ -14,7 +15,6 @@ function App() {
 
   return (
     <>
-      <h1>Hii!!!</h1>
       <MyNavbar/>
       <Routes>
       <Route path="/" element={<HomePage/>} />
@@ -22,6 +22,7 @@ function App() {
       <Route path="/register" element={<RegisterPage/>} />
       <Route path="/addmood" element={<AddMood/>} />
       <Route path="/allmoods" element={<AllMoods/>} />
+      <Route path="/logout" element={<Logout/>} />
     </Routes>
       
     </>

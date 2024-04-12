@@ -8,8 +8,7 @@ import {
     signInWithPopup,
     GoogleAuthProvider
 } from 'firebase/auth'
-import {getFirestore} from 'firebase/firestore'
-import {getStorage} from 'firebase/storage'
+
 
 
 const FirebaseContext = createContext(null);
@@ -28,8 +27,6 @@ export const useFirebase = () => useContext(FirebaseContext);
 
 const firebaseApp = initializeApp(firebaseConfig);
 const firebaseAuth = getAuth(firebaseApp);
-const firestore = getFirestore(firebaseApp);
-const storage = getStorage(firebaseApp);
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -54,13 +51,16 @@ export const FirebaseProvider = (props) => {
 
     console.log(user)
 
+    const logOut = () => setUser(null)
+
     const isLoggedIn = user ? true : false
 
     return (<FirebaseContext.Provider value={{
         signupUserWithEmailAndPassword,
         signinUserWithEmailAndPass,
         signinWithGoogle,
-        isLoggedIn
+        logOut,
+        isLoggedIn,
     }}>
         {props.children}
     </FirebaseContext.Provider>
