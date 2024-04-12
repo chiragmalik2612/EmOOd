@@ -1,4 +1,7 @@
-import Login from "./components/Login"
+import "bootstrap/dist/css/bootstrap.min.css"
+import LoginPage from "./components/Login"
+import RegisterPage from "./components/Signup"
+
 
 
 function App() {
@@ -6,7 +9,9 @@ function App() {
   return (
     <>
       <h1>Hii!!!</h1>
-      <Login />
+      <LoginPage/>
+      <RegisterPage/>
+      
     </>
   )
 }
