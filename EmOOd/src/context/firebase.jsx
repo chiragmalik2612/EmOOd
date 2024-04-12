@@ -51,15 +51,12 @@ export const FirebaseProvider = (props) => {
 
     console.log(user)
 
-    const logOut = () => setUser(null)
-
     const isLoggedIn = user ? true : false
 
     return (<FirebaseContext.Provider value={{
         signupUserWithEmailAndPassword,
         signinUserWithEmailAndPass,
         signinWithGoogle,
-        logOut,
         isLoggedIn,
     }}>
         {props.children}
