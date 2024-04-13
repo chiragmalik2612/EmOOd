@@ -25,6 +25,7 @@ const EmotionList = () => {
     const firebase = useFirebase();
     const firebaseAuth = getAuth()
 
+    const colRef = collection(firestore, `UserData/${firebaseAuth.currentUser}/user-emotions`)
 
 
     useEffect(() => {
@@ -36,7 +37,7 @@ const EmotionList = () => {
         console.log(firestore)
         console.log(storage)
 
-        const colRef = collection(firestore, `UserData/${firebaseAuth.currentUser}/user-emotions`)
+        //const colRef = collection(firestore, `UserData/${firebaseAuth.currentUser}/user-emotions`)
 
         onSnapshot(colRef, (items) => {
             items.forEach((item) => {
