@@ -15,7 +15,7 @@ const storage = getStorage();
 
 const EmotionList = () => {
 
-    const [currentEmotionActive, setCurrentEmotionActive] = useState("surprise"); //emotion card clicked on
+    const [currentEmotionActive, setCurrentEmotionActive] = useState(""); 
     const [popUpEmotion, setpopUpEmotion] = useState(null);
     const [level2Active, setLevel2Active] = useState(false);
     const [color, setColor] = useState();
@@ -30,12 +30,12 @@ const EmotionList = () => {
 
     useEffect(() => {
 
-        const result = firebase.isLoggedIn
-        console.log(result)
-        console.log(firebase)
-        console.log(firebaseAuth.currentUser)
-        console.log(firestore)
-        console.log(storage)
+        // const result = firebase.isLoggedIn
+        // console.log(result)
+        // console.log(firebase)
+        // console.log(firebaseAuth.currentUser)
+        // console.log(firestore)
+        // console.log(storage)
 
         //const colRef = collection(firestore, `UserData/${firebaseAuth.currentUser}/user-emotions`)
 
@@ -44,7 +44,7 @@ const EmotionList = () => {
                 let id = item.id;
                 let data = item.data()
 
-                console.log(data)
+               // console.log(data)
             })
         },
             (err) => {
