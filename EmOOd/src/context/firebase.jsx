@@ -47,6 +47,7 @@ export const FirebaseProvider = (props) => {
         });
     }, []);
 
+
     const signupUserWithEmailAndPassword = (email, password) =>
         createUserWithEmailAndPassword(firebaseAuth, email, password)
 
@@ -55,8 +56,7 @@ export const FirebaseProvider = (props) => {
 
     const signinWithGoogle = () => signInWithPopup(firebaseAuth, googleProvider)
 
-    console.log("User = ", user)
-
+    
     const logOut = () => {
         signOut(firebaseAuth)
         .then(() => {
@@ -69,6 +69,11 @@ export const FirebaseProvider = (props) => {
 
 
     const isLoggedIn = user ? true : false
+
+    console.log(firebaseAuth)
+    console.log(firebaseApp)
+    console.log("User = ", user)
+
 
     return (<FirebaseContext.Provider value={{
         signupUserWithEmailAndPassword,
