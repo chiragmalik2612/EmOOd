@@ -9,6 +9,9 @@ import {
     GoogleAuthProvider, 
     signOut
 } from 'firebase/auth'
+import {getFirestore, collection, addDoc, getDocs} from 'firebase/firestore'
+import {getStorage, ref, uploadBytes} from 'firebase/storage'
+
 
 
 
@@ -28,6 +31,8 @@ export const useFirebase = () => useContext(FirebaseContext);
 
 const firebaseApp = initializeApp(firebaseConfig);
 const firebaseAuth = getAuth(firebaseApp);
+const firestore = getFirestore(firebaseApp);
+const storage = getStorage(firebaseApp);
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -50,7 +55,7 @@ export const FirebaseProvider = (props) => {
 
     const signinWithGoogle = () => signInWithPopup(firebaseAuth, googleProvider)
 
-    console.log(user)
+    console.log("User = ", user)
 
     const logOut = () => {
         signOut(firebaseAuth)
