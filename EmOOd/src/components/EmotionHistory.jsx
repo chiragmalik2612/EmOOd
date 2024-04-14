@@ -3,8 +3,8 @@ import { Line } from "react-chartjs-2";
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
-import { getFirestore, collection, addDoc, getDocs, onSnapshot } from 'firebase/firestore'
-import { getStorage, ref, uploadBytes } from 'firebase/storage'
+import { getFirestore, collection, getDocs, onSnapshot } from 'firebase/firestore'
+import { getStorage,} from 'firebase/storage'
 
 import { useFirebase } from "../context/firebase"
 import { getAuth } from 'firebase/auth';
@@ -23,44 +23,45 @@ const EmotionHistory = () => {
     const firebase = useFirebase();
     const firebaseAuth = getAuth();
 
-    const colRef = collection(firestore, `UserData/${firebaseAuth.currentUser}/user-emotions`)
+    const docRef = collection(firestore, `UserData/${firebaseAuth.currentUser}/user-emotions`)
 
     useEffect(() => {
 
-        onSnapshot(colRef, (items) => {
-            setLoading(false);
-            const emotionData = [];
-            const labels = [];
-            items.forEach((item) => {
-                let data = item.data();
-                emotionData.push(data);
-                const dateString = data.date.toDate().toString().substring(0, 16);
-                if (!labels.includes(dateString)) {
-                    labels.push(dateString);
-                }
-            })
+        getDocs(docRef)
+            .then((items) => {
+                setLoading(false);
+                const emotionData = [];
+                const labels = [];
+                items.forEach((item) => {
+                    let data = item.data();
+                    emotionData.push(data);
+                    const dateString = data.date.toDate().toString().substring(0, 16);
+                    if (!labels.includes(dateString)) {
+                        labels.push(dateString);
+                    }
+                })
 
-            const positiveDataArray = new Array(labels.length).fill(0);
-            const negativeDataArray = new Array(labels.length).fill(0);
-            items.forEach((item) => {
-                let data = item.data();
-                const dateString = data.date.toDate().toString().substring(0, 16);
-                if (data.emotionType == "Positive") {
-                    positiveDataArray[labels.indexOf(dateString)]++;
-                } else {
-                    negativeDataArray[labels.indexOf(dateString)]--;
-                }
-            });
-            setEmotions(emotionData);
-            setLabels(labels);
-            setPositiveDataArray(positiveDataArray);
-            setNegativedataArray(negativeDataArray);
-        },
-            (err) => {
-                console.log(`Encountered error: ${err}`);
-            }
-        );
-    }, [])
+                const positiveDataArray = new Array(labels.length).fill(0);
+                const negativeDataArray = new Array(labels.length).fill(0);
+                items.forEach((item) => {
+                    let data = item.data();
+                    const dateString = data.date.toDate().toString().substring(0, 16);
+                    if (data.emotionType == "Positive") {
+                        positiveDataArray[labels.indexOf(dateString)]++;
+                    } else {
+                        negativeDataArray[labels.indexOf(dateString)]--;
+                    }
+                });
+                setEmotions(emotionData);
+                setLabels(labels);
+                setPositiveDataArray(positiveDataArray);
+                setNegativedataArray(negativeDataArray);
+            },
+                (err) => {
+                    console.log(`Encountered error: ${err}`);
+                })
+        ;
+    }, [positiveDataArray,negativeDataArray])
 
     const data = {
         labels: labels,
@@ -85,12 +86,12 @@ const EmotionHistory = () => {
 
     const options = {
         scales: {
-            y: 
-                {
-                    ticks: {
-                        beginAtZero: true,
-                    },
+            y:
+            {
+                ticks: {
+                    beginAtZero: true,
                 },
+            },
         },
     };
 
@@ -112,25 +113,15 @@ const EmotionHistory = () => {
             }}>
                 {loading ? (
                     <div >
-                        <h5 style={{ marginTop: "10px" }}>Loading your emotion history</h5>
-                        {/* <HashLoader
-                            color={color}
-                            loading={loading}
-                            style={{
-                                display: "block",
-                                margin: "0 auto",
-                                margintop: "30px"
-                            }}
-                            size={100}
-                        /> */}
+                        <h5 style={{ marginTop: "10rem", textAlign:"center",  }}>Loading your emotion history</h5>
                     </div>
                 ) : (
                     <div>
-                        <h5 style={{ marginTop: "10px" }}>Your emotion history</h5>
+                        <h5 style={{ marginTop: "10px", textAlign:"center" }}>Your emotion history</h5>
 
                         <div style={{ maxHeight: "40vh", overflowY: "scroll" }}>
                             {emotions.map((item) => {
-                                console.log(`${item} = ${item.color}`);
+                                //console.log(`${item} = ${item.color}`);
                                 return (
                                     <div
                                         style={{

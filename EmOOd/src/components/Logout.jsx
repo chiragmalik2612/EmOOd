@@ -1,11 +1,15 @@
+import {  useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 const Logout = () => {
+    const navigate = useNavigate()
 
     return (
-        <div className="mt-5">
-            <h1>LogOut</h1>
-        </div>
+        useEffect(() => {
+            navigate('/')
+        })
     )
+        
 }
 
 export default Logout

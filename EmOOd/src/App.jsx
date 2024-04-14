@@ -18,9 +18,6 @@ function App() {
   return (
     <>
       <MyNavbar/>
-      {/* <EmotionInfo/>
-      <EmotionList/>
-      <EmotionHistory/> */}
       <Routes>
       <Route path="/" element={<HomePage/>} />
       <Route path="/login" element={<LoginPage />} />

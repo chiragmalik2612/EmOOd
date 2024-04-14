@@ -3,7 +3,7 @@ import EmotionList from "./EmotionList"
 const AddMood = () => {
   return (
     <div>
-      <h1>How are you feeling right now</h1>
+      <h2 style={{textAlign:"center", margin:"2rem"}}>How are you feeling right now</h2>
       <EmotionList/>
     </div>
   )

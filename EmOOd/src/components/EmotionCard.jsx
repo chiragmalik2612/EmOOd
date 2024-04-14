@@ -9,7 +9,6 @@ const EmotionCard = ({ emotionWord, emotionClicked }) => {
                 alignItems: 'center',
                 minHeight: 100,
                 minWidth: 120,
-                // padding: 30,
                 margin: "20px",
                 color: "black",
                 textAlign: "center",

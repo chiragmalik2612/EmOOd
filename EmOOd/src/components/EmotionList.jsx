@@ -27,17 +27,10 @@ const EmotionList = () => {
 
     const colRef = collection(firestore, `UserData/${firebaseAuth.currentUser}/user-emotions`)
 
+    console.log(firebaseAuth.currentUser)
+
 
     useEffect(() => {
-
-        // const result = firebase.isLoggedIn
-        // console.log(result)
-        // console.log(firebase)
-        // console.log(firebaseAuth.currentUser)
-        // console.log(firestore)
-        // console.log(storage)
-
-        //const colRef = collection(firestore, `UserData/${firebaseAuth.currentUser}/user-emotions`)
 
         onSnapshot(colRef, (items) => {
             items.forEach((item) => {
