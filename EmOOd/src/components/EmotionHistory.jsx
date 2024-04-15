@@ -23,7 +23,11 @@ const EmotionHistory = () => {
     const firebase = useFirebase();
     const firebaseAuth = getAuth();
 
-    const docRef = collection(firestore, `UserData/${firebaseAuth.currentUser}/user-emotions`)
+   const docRef = collection(firestore, `UserData/${firebaseAuth.currentUser}/user-emotions`)
+
+//    const docRef = collection(firestore, `UserData/${firebaseAuth.currentUser}`)
+
+
 
     useEffect(() => {
 
@@ -119,7 +123,7 @@ const EmotionHistory = () => {
                     <div>
                         <h5 style={{ marginTop: "10px", textAlign:"center" }}>Your emotion history</h5>
 
-                        <div style={{ maxHeight: "40vh", overflowY: "scroll" }}>
+                        <div style={{ maxHeight: "40vh", overflowY: "scroll", marginLeft:"6rem" }}>
                             {emotions.map((item) => {
                                 //console.log(`${item} = ${item.color}`);
                                 return (
@@ -142,7 +146,7 @@ const EmotionHistory = () => {
                                 );
                             })}
                         </div>
-                        <div style={{ marginTop: "50px" }}>
+                        <div style={{ marginTop: "50px", marginLeft:"2.5rem" }}>
                             <Line data={data} options={options} />
                         </div>
                     </div>

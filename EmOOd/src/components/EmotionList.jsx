@@ -7,7 +7,7 @@ import { getFirestore, collection, addDoc, getDocs, onSnapshot } from 'firebase/
 import { getStorage, ref, uploadBytes } from 'firebase/storage'
 
 import { useFirebase } from "../context/firebase"
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const firestore = getFirestore();
 const storage = getStorage();
@@ -25,7 +25,13 @@ const EmotionList = () => {
     const firebase = useFirebase();
     const firebaseAuth = getAuth()
 
-    const colRef = collection(firestore, `UserData/${firebaseAuth.currentUser}/user-emotions`)
+
+ const colRef = collection(firestore, `UserData/${firebaseAuth.currentUser}/user-emotions`)
+
+//  const colRef = collection(firestore, `UserData/${firebaseAuth.currentUser}`)
+
+
+    
 
     console.log(firebaseAuth.currentUser)
 
@@ -45,6 +51,16 @@ const EmotionList = () => {
             }
         )
     })
+
+    // getDocs(colRef)
+    // .then((items) => {
+    //     items.forEach((item) => {
+    //         let data = item.data()
+
+    //         console.log(data)
+    //     })
+    //    // console.log(items.docs)
+    // })
 
 
     //simple emotions
@@ -163,7 +179,7 @@ const EmotionList = () => {
                         ? emotionList.map((emotion) => {
                             return (
                                 <EmotionCard
-                                    //key={}
+                                    key={Math.random()}
                                     emotionClicked={updateDisplay}
                                     emotionWord={emotion}
                                     color={emotionListColor[emotion]}
@@ -174,13 +190,13 @@ const EmotionList = () => {
                         level2Words[currentEmotionActive].map((emotion, delay) => {
                             return (
                                 <EmotionCard
-                                    // onClick={() => setpopUp(true)}
-                                    // key={}
+                                    onClick={() => setpopUp(true)}
+                                    key={Math.random()}
                                     emotionClicked={() => {
                                         setpopUp(true);
                                         setpopUpEmotion(emotion);
                                     }}
-                                    // delay={delay}
+                                    
                                     emotionWord={emotion}
                                     color={emotionListColor[currentEmotionActive]}
                                 />
